@@ -54,7 +54,16 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
 ```
-Your answer...
+Type 1 — Overwrite
+In this approach, the CUSTOMER_ADDRESS table contains columns such as customer_id, address, city, state, zip_code, last_updated.
+When a customer updates their address, the existing row is overwritten with the new values and the last_updated timestamp is refreshed.
+This method does not preserve historical address changes and is typically used when only the latest value is relevant for reporting.
+
+Type 2 — Retain History
+In this approach, the CUSTOMER_ADDRESS table maintains history by creating a new row every time the address changes.
+The table contains fields such as customer_address_id (surrogate key), customer_id, address, city, state, zip_code, effective_date, expiration_date, is_active.
+When a customer updates their address, a new row is inserted with effective_date = current date, and the previous record's expiration_date is set accordingly (e.g., previous day) and optionally marked is_active = false.
+This approach enables full tracking of historical address changes over time and is commonly used in dimensional models for analytics.
 ```
 
 ***
