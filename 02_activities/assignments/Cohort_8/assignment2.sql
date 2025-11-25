@@ -7,16 +7,6 @@
 /* prompt 2 */
 ![assignment_2_2.png](./images/assignment_2_2.drawio.png)
 
-/* prompt 3 */
-/* The store wants to keep customer addresses. Propose two architectures for the CUSTOMER_ADDRESS table, one that will retain changes, and another that will overwrite. Which is type 1, which is type 2?
-
-HINT: search type 1 vs type 2 slowly changing dimensions. */
-
-/* ANSWER: */
-Type 1: Overwrite - In this architecture, the CUSTOMER_ADDRESS table would have columns for customer_id, address, city, state, zip_code, and a last_updated timestamp. Whenever a customer updates their address, the existing record is simply overwritten with the new information. This approach does not retain any historical data about previous addresses.
-
-Type 2: Retain Changes - In this architecture, the CUSTOMER_ADDRESS table would include columns for customer_id, address, city, state, zip_code, effective_date, and expiration_date. Each time a customer updates their address, a new record is created with the new address and the effective_date set to the current date. The previous record's expiration_date is updated to the day before the new record's effective_date. This approach allows for tracking of historical addresses over time.
-
 
 /* SECTION 2 */
 
